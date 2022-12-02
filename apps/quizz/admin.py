@@ -14,6 +14,7 @@ class ChoiceInline(admin.TabularInline):
     model = Choice
     extra = 0
     list_display = ['__all__']
+    readonly_fields = ['votes']
 
 
 @admin.register(Poll)
@@ -24,5 +25,7 @@ class PollAdmin(admin.ModelAdmin):
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline,]
+    fields = ('poll', 'text')
+
 
 
