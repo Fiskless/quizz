@@ -2,7 +2,7 @@ from django.urls import path
 
 from apps.quizz.views import get_vote_results, show_all_polls, \
     show_all_users_and_completed_polls, get_poll_detail, get_question_detail, \
-    get_votes_for_question
+    get_votes_for_question, complete_poll
 
 urlpatterns = [
     path('', show_all_polls, name='main_page'),
@@ -19,4 +19,7 @@ urlpatterns = [
     path('poll/<int:poll_id>/question/<int:question_id>/results/',
          get_vote_results,
          name='result_page'),
+    path('poll/<int:poll_id>/complete/',
+         complete_poll,
+         name='poll_completion'),
 ]

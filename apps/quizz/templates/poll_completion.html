@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="m-3">Спасибо за пройденный опрос</h1>
+    <p>Вам было начислено {{ poll_weight }} очков. Для переходна на главную старницу, нажмите <a href="{% url 'main_page' %}">сюда</a>.</p>
+{% endblock %}

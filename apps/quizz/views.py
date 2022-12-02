@@ -69,3 +69,16 @@ def get_vote_results(request, poll_id, question_id):
     }
     return render(request, 'result_page.html', context)
 
+
+@login_required
+def complete_poll(request, poll_id):
+    poll_weight = Poll.objects.get(id=poll_id).weight
+    request.user.points += poll_weight
+    request.user.completed_polls.add(Poll.objects.get(id=poll_id))
+    request.user.save()
+    context = {
+        'poll_weight': poll_weight,
+        'poll_id': poll_id,
+    }
+    return render(request, 'poll_completion.html', context)
+
