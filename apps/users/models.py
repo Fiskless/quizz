@@ -8,8 +8,11 @@ class CustomUser(AbstractUser):
     points = models.PositiveSmallIntegerField('Количество баллов', default=0)
     completed_polls = models.ManyToManyField(Poll,
                                              related_name="users",
-                                             verbose_name='Пройденный опросы'
+                                             verbose_name='Пройденный опросы',
+                                             null=True,
+                                             blank=True
                                              )
+    login_color = models.CharField('Цвет рамки', max_length=10, default='black')
 
     def __str__(self):
         return self.username
