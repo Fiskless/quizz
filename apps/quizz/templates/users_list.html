@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% for user in users %}
+<h4 class="m-3"><span style="color: {{request.user.login_color}}">{{ user.username }}</span></h4>
+<div class="row justify-content-center">
+    <ul class="list-group">
+      {% for poll in user.completed_polls.all %}
+        <li class="list-group-item">{{ poll.name }}</li>
+      {% endfor %}
+      <br>
+      <li class="list-group-item">Общее количество пройденных опросов: {{ user.completed_polls.all.count }}</li>
+    </ul>
+</div>
+{% endfor %}
+{% endblock %}

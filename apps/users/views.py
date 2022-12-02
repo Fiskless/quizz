@@ -6,7 +6,6 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from apps.users.forms import CreateUserForm, ChangeLoginColorForm
-from apps.users.models import CustomUser
 
 
 class UserRegisterView(generic.CreateView):

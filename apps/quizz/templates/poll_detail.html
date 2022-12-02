@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="m-3">Список вопросов</h1>
+{% if questions %}
+{% for question in questions %}
+<div class ="card-mb-3">
+    <div class ="card-body">
+        <p class ="lead">{{ question.text }}</p>
+        <a href ="{% url 'question_detail' poll_id question.id %}" class ="btn btn-primary btn-sm">Ответить сейчас</a>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+  <p>Пока что нет ни одного вопроса в данном опросе</p>
+{% endif %}
+{% endblock %}

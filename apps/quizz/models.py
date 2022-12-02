@@ -36,13 +36,14 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-    name = models.TextField(verbose_name='Вариант ответа')
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
         related_name="choices",
         verbose_name='Вопрос'
     )
+    name = models.CharField(verbose_name='Вариант ответа', max_length=200)
+    votes = models.PositiveIntegerField('Количество голосов', default=0)
 
     class Meta:
         verbose_name = 'Вариант ответа'

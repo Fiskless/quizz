@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="m-3">Опросы</h1>
+{% if polls %}
+<div class="row justify-content-center">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Опрос</th>
+          <th scope="col">Количество баллов за прохождение</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for poll in polls %}
+            <tr>
+              <td><a class="nav-link" href="#">{{ poll.name }}</a></td>
+              <td>{{ poll.weight }}</td>
+            </tr>
+        {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

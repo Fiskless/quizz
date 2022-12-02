@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form action="{% url 'result_page' 1 %}" method="post">
+{% csrf_token %}
+{% for question in questions %}
+<h1>{{ question.text }}</h1>
+<ul>
+    {% for choice in question.choices.all %}
+        <li>{{ choice.name }}</li>
+    {% endfor %}
+</ul>
+<input type="submit" value="Vote">
+{% endfor %}
+</form>
+<h1 class="m-3">Вход</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+                <form action="." method="post" novalidate>
+                    {{ form.as_p }}
+                    <p></p>
+                    <p><input type="submit" value="Отправить результат"></p>
+                </form>
+        </div>
+    </div>
+{% endblock %}
