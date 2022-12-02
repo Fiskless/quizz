@@ -57,7 +57,7 @@ def get_votes_for_question(request, poll_id, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(
-            reverse('poll_detail', args=[poll_id]))
+            reverse('result_page', args=[poll_id, question.id]))
 
 
 @login_required
