@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse
 
 from apps.quizz.models import Poll, Question, Choice
@@ -27,7 +27,9 @@ def get_poll_detail(request, poll_id):
     questions = poll.questions.all()
     context = {
         'questions': questions,
-        'poll_id': poll_id
+        'poll_id': poll_id,
+        'answered': request.GET.get('answered'),
+        'error_message': "Для завершения опроса ответьте минимум на один вопрос",
     }
     return render(request, 'poll_detail.html', context)
 
@@ -51,7 +53,7 @@ def get_votes_for_question(request, poll_id, question_id):
         context = {
             'question': question,
             'poll_id': poll_id,
-            'error_message': "You didn't select a choice.",
+            'error_message': "Выберите ответ",
         }
         return render(request, 'question_detail.html', context)
     else:

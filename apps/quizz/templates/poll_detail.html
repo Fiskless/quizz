@@ -14,6 +14,12 @@
   <p>Пока что нет ни одного вопроса в данном опросе</p>
 {% endif %}
 <div class ="card-body">
-    <a href ="{% url 'poll_completion' poll_id %}" class ="btn btn-success btn-sm">Завершить опрос</a>
+    {% if answered %}
+        <a href ="{% url 'poll_completion' poll_id %}" class ="btn btn-success btn-sm">Завершить опрос</a>
+    {% else %}
+        <p class ="alert alert-secondary">
+            <strong>{{ error_message }}</strong>
+        </p>
+    {% endif %}
 </div>
 {% endblock %}

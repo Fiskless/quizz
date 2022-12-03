@@ -19,6 +19,6 @@
     </tbody>
 </table>
   
-<a class ="btn btn-secondary" href ="{% url 'poll_detail' poll_id %}">Вернуться к опросу</a>
+<a class ="btn btn-secondary" href ="{% url 'poll_detail' poll_id %}?answered=1">Вернуться к опросу</a>
 <a class ="btn btn-dark" href ="{% url 'question_detail' poll_id question.id %}">Проголосовать еще раз</a>
 {% endblock %}

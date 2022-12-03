@@ -7,7 +7,6 @@
 <p class ="alert alert-danger">
     <strong>{{ error_message }}</strong>
 </p>
-
 {% endif %}
 
 <form action ="{% url 'vote' poll_id question.id %}" method ="post">
