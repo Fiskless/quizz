@@ -73,15 +73,18 @@ def get_vote_results(request, poll_id, question_id):
 
 @login_required
 def complete_poll(request, poll_id):
+    is_poll_already_completed = True
     poll = Poll.objects.get(id=poll_id)
     poll_weight = poll.weight
     if poll not in request.user.completed_polls.all():
+        is_poll_already_completed = False
         request.user.points += poll_weight
         request.user.completed_polls.add(poll)
         request.user.save()
     context = {
         'poll_weight': poll_weight,
         'poll_id': poll_id,
+        'is_poll_already_completed': is_poll_already_completed
     }
     return render(request, 'poll_completion.html', context)
 
