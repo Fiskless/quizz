@@ -16,11 +16,12 @@ def show_all_polls(request):
 
 @login_required
 def show_all_users_and_completed_polls(request):
-    users = CustomUser.objects.all()
+    users = CustomUser.objects.all().prefetch_related('completed_polls')
 
     return render(request, 'users_list.html', {'users': users})
 
 
+@login_required
 def get_poll_detail(request, poll_id):
     poll = Poll.objects.get(id=poll_id)
     questions = poll.questions.all()
@@ -43,7 +44,7 @@ def get_question_detail(request, poll_id, question_id):
 @login_required
 def get_votes_for_question(request, poll_id, question_id):
 
-    question = get_object_or_404(Question, pk=question_id)
+    question = Question.objects.get(id=question_id)
     try:
         selected_choice = question.choices.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):

@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'apps.users',
     'crispy_forms',
     'apps.quizz',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -149,3 +151,6 @@ LOGIN_REDIRECT_URL = "main_page"
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
