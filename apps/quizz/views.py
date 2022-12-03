@@ -74,9 +74,10 @@ def get_vote_results(request, poll_id, question_id):
 def complete_poll(request, poll_id):
     poll = Poll.objects.get(id=poll_id)
     poll_weight = poll.weight
-    request.user.points += poll_weight
-    request.user.completed_polls.add(poll)
-    request.user.save()
+    if poll not in request.user.completed_polls.all():
+        request.user.points += poll_weight
+        request.user.completed_polls.add(poll)
+        request.user.save()
     context = {
         'poll_weight': poll_weight,
         'poll_id': poll_id,
