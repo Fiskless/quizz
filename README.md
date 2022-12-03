@@ -35,11 +35,18 @@ cd quizz
 
 ## Как запустить сайт
 
+Поднимите базу данных:
+
+```sh
+docker-compose up
+```
 
 Установите зависимости в виртуальное окружение:
 ```sh
 pip install -r requirements.txt
 ```
+
+Запустите миграции базы данных:
 
 ```sh
 python manage.py migrate
@@ -64,8 +71,9 @@ python manage.py runserver
 - `DEBUG` — дебаг-режим. Поставьте True, чтобы увидеть отладочную информацию в случае ошибки.
 - `SECRET_KEY` — секретный ключ проекта
 - `ALLOWED_HOSTS` - адреса, на которых будет обслуживаться сайт
+- `DATABASE_URL` - URL, в котором содержатся данные о БД, которые распарсятся с [помощью](https://github.com/jazzband/dj-database-url)
 
 Для всех переменных установлены значения по умолчанию
 
 ## Используемые технологии
-python3, Django, environs
+python3, Django, environs, docker-compose, PostgreSQL
