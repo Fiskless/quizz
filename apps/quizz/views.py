@@ -34,6 +34,7 @@ def get_poll_detail(request, poll_id):
     return render(request, 'poll_detail.html', context)
 
 
+@login_required
 def get_question_detail(request, poll_id, question_id):
     question = Question.objects.get(id=question_id)
     context = {
@@ -60,7 +61,7 @@ def get_votes_for_question(request, poll_id, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(
-            reverse('result_page', args=[poll_id, question.id]))
+            reverse('question_result_page', args=[poll_id, question.id]))
 
 
 @login_required
@@ -70,7 +71,7 @@ def get_vote_results(request, poll_id, question_id):
         'question': question,
         'poll_id': poll_id,
     }
-    return render(request, 'result_page.html', context)
+    return render(request, 'question_result_page.html', context)
 
 
 @login_required

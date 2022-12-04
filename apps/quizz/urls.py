@@ -18,7 +18,7 @@ urlpatterns = [
          name='vote'),
     path('poll/<int:poll_id>/question/<int:question_id>/results/',
          get_vote_results,
-         name='result_page'),
+         name='question_result_page'),
     path('poll/<int:poll_id>/complete/',
          complete_poll,
          name='poll_completion'),
